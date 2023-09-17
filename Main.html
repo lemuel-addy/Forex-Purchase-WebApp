@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+    <style>
+        
+    </style>
+        
+</head>
+<body class="bg-gray-50 dark:bg-gray-700">
+
+<nav class="bg-gray-200 border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="https://flowbite.com/" class="flex items-center">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FX Purchase</span>
+    </a>
+    <div class="flex items-center md:order-2">
+        <button  onclick="toggleDropdown()" type="button" data-dropdown-toggle="language-dropdown-menu" class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+            <img class="w-5 h-5 mr-2 rounded-full" src="https://cdn.britannica.com/54/5054-004-A09ABCDF/Flag-Ghana.jpg" alt="Flag">
+            ₵ (GH)
+        </button>
+    
+        <div class="absolute z-50 top-12 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700" id="language-dropdown-menu">
+          <ul class="py-2 font-medium" role="none">
+            <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                <div class="inline-flex items-center">
+                    <svg class="w-5 h-5 mr-2 rounded-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3900 3900"><path fill="#b22234" d="M0 0h7410v3900H0z"/><path d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0" stroke="#fff" stroke-width="300"/><path fill="#3c3b6e" d="M0 0h2964v2100H0z"/><g fill="#fff"><g id="d"><g id="c"><g id="e"><g id="b"><path id="a" d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"/><use xlink:href="#a" y="420"/><use xlink:href="#a" y="840"/><use xlink:href="#a" y="1260"/></g><use xlink:href="#a" y="1680"/></g><use xlink:href="#b" x="247" y="210"/></g><use xlink:href="#c" x="494"/></g><use xlink:href="#d" x="988"/><use xlink:href="#c" x="1976"/><use xlink:href="#e" x="2470"/></g></svg> 
+                   $ (US)
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                <div class="inline-flex items-center">
+                    <img class="w-5 h-5 mr-2 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/510px-Flag_of_the_United_Kingdom_%281-2%29.svg.png" alt="Flag">
+                    £ (UK)
+                </div>
+              </a>
+            </li>
+           
+          </ul>
+        </div>
+        
+       
+            <div class="flex justify-between items-center">
+           
+              <div>
+                <button class=" text-black dark:text-white font-bold py-2 px-2 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    </svg>                      
+                </button>
+
+                <button class="  text-black dark:text-white font-bold py-2 px-2 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z" clip-rule="evenodd" />
+                        <circle cx="18" cy="6" r="4" fill="red" class="text-white " /> <!-- Add this circle element for notification count -->
+                      </svg>
+                                                               
+                </button>
+
+                <button data-popover-target="popover-user-profile" type="button" class="  text-black dark:text-white font-bold py-2 px-2 rounded"   onmouseover="showPopover()" onmouseout="hidePopover()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                      </svg>                                                 
+                </button>
+                <div data-popover id="popover-user-profile" role="tooltip" class="absolute right-4 z-10 invisible w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600" onmouseover="showPopover()" onmouseout="hidePopover()" >
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+                                    <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                                  </svg>
+                            </a>
+                            <div>
+                                <button onclick="window.location.href='Login.html'" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Log out</button>
+                            </div>
+                        </div>
+                        <p class="text-base font-semibold leading-none text-gray-900 dark:text-white">
+                            <a href="#">Lemuel Addy</a>
+                        </p>
+                        <p class="mb-3 text-sm font-normal">
+                            <a href="#" class="hover:underline">@lemadd1</a>
+                        </p>
+                       
+                    </div>
+                    <div data-popper-arrow></div>
+                </div>
+
+              </div>
+                </div>
+
+
+              
+            
+   
+  </nav>
+
+  <nav class="bg-white border-gray-200 dark:bg-gray-800">
+    
+    <div class="max-w-screen-xl text-black dark:text-white flex flex-wrap items-center justify-between mx-auto p-4">
+        <div>
+        Preferred Currency:
+        <button onclick="toggleDropdown2()" type="button" data-dropdown-toggle="language-dropdown-menu" class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+            <svg class="w-5 h-5 mr-2 rounded-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3900 3900"><path fill="#b22234" d="M0 0h7410v3900H0z"/><path d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0" stroke="#fff" stroke-width="300"/><path fill="#3c3b6e" d="M0 0h2964v2100H0z"/><g fill="#fff"><g id="d"><g id="c"><g id="e"><g id="b"><path id="a" d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"/><use xlink:href="#a" y="420"/><use xlink:href="#a" y="840"/><use xlink:href="#a" y="1260"/></g><use xlink:href="#a" y="1680"/></g><use xlink:href="#b" x="247" y="210"/></g><use xlink:href="#c" x="494"/></g><use xlink:href="#d" x="988"/><use xlink:href="#c" x="1976"/><use xlink:href="#e" x="2470"/></g></svg>
+            $ (US)
+          </button>
+          <!-- Dropdown -->
+          <div class="absolute left-60 z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700" id="language-dropdown-menu2">
+            <ul class="py-2 font-medium" role="none">
+                <li>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                    <div class="inline-flex items-center">
+                        <img class="w-5 h-5 mr-2 rounded-full" src="https://cdn.britannica.com/54/5054-004-A09ABCDF/Flag-Ghana.jpg" alt="Flag">
+                        ₵ (GH)
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                    <div class="inline-flex items-center">
+                        <img class="w-5 h-5 mr-2 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/510px-Flag_of_the_United_Kingdom_%281-2%29.svg.png" alt="Flag">
+                        £ (UK)
+                    </div>
+                  </a>
+                </li>
+               
+              </ul>
+          </div>
+        </div>
+      <div class="flex md:order-2">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+          </div>
+          <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Providers...">
+        </div>
+      </div>
+      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+        <div class="relative mt-3 md:hidden">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+          </div>
+          <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+        </div>
+      </div>
+    </div>
+  </nav>
+ 
+<div class="flex justify-between space-x-2 shadow-md ">
+    <div class="w-1/2 dark:bg-gray-600 bg-gray-200">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Provider
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    BUY
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    SELL
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Provider #1
+                </th>
+                <td class="px-6 py-4">
+                    1.1277
+                </td>
+                <td class="px-6 py-4">
+                    1.2312
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDropdown4()" type="button" data-dropdown-toggle="language-dropdown-menu" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Purchase
+                    </button>
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Provider #2
+                </th>
+                <td class="px-6 py-4">
+                    1.2733
+                </td>
+                <td class="px-6 py-4">
+                    1.2764
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDropdown3()" type="button" data-dropdown-toggle="language-dropdown-menu" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Purchase
+                    </button>
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Provider #3
+                </th>
+                <td class="px-6 py-4">
+                    1.2332
+                </td>
+                <td class="px-6 py-4">
+                    1.2898
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDropdown5()" type="button" data-dropdown-toggle="language-dropdown-menu" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Purchase
+                    </button>
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Provider #4
+                </th>
+                <td class="px-6 py-4">
+                    1.2933
+                </td>
+                <td class="px-6 py-4">
+                    1.2632
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDropdown6()" type="button" data-dropdown-toggle="language-dropdown-menu" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Purchase
+                    </button>
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Provider #5
+                </th>
+                <td class="px-6 py-4">
+                    1.2223
+                </td>
+                <td class="px-6 py-4">
+                    1.2322
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDropdown7()" type="button" data-dropdown-toggle="language-dropdown-menu" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Purchase
+                    </button>
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Provider #6
+                </th>
+                <td class="px-6 py-4">
+                    1.2432
+                </td>
+                <td class="px-6 py-4">
+                    1.2333
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="toggleDropdown8()" type="button" data-dropdown-toggle="language-dropdown-menu" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Purchase
+                    </button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+  
+    </div>
+    <div class="w-1/2 h-1/2 float-right">
+        <canvas  id="forexChart"></canvas>
+    </div>
+    
+
+</div>
+
+ 
+<div class="flex items-center justify-center h-full bg-white dark:bg-gray-800">
+    <h1 class="text-2xl text-gray-500 dark:text-white p-4 font-bold">Order Status</h1>
+</div>
+
+  <div class="flex items-center justify-center flex-wrap  overflow-auto max-h-96 bg-gray-50 dark:bg-gray-700">
+    <br>
+    <div id="orders"> <h1 class="text-l text-gray-500 dark:text-white p-4 font-bold">No Orders Available</h1></div>
+   
+    <div id="neworder" class="w-full p-8 rounded-2xl bg-gray-50 space-y-6 dark:border-gray-600 dark:bg-gray-800 hidden" role="order">
+        
+       
+      </div>
+  
+
+</div>
+
+<div id="purchase-provider-1" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+    <div  class="w-full max-w-lg  p-4 ">
+   <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal1">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Provider #1 - GHC/USD</h3>
+                <form class="space-y-6" action="#">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input   id="quantity1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account</label>
+                        <input   id="bank1" placeholder="XXXX XXXX XXXX XXXX" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+                    
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+<div id="purchase-provider-2" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+    <div  class="w-full max-w-lg  p-4 ">
+   <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal2">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Provider #2 - GHC/USD</h3>
+                <form class="space-y-6" action="#">
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input   id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account</label>
+                        <input   id="password" placeholder="XXXX XXXX XXXX XXXX" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+                    
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+<div id="purchase-provider-3" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+    <div  class="w-full max-w-lg  p-4 ">
+   <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal3">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Provider #3 - GHC/USD</h3>
+                <form class="space-y-6" action="#">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account</label>
+                        <input   id="password" placeholder="XXXX XXXX XXXX XXXX" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+                    
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+<div id="purchase-provider-4" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+    <div  class="w-full max-w-lg  p-4 ">
+   <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal4">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Provider #4 - GHC/USD</h3>
+                <form class="space-y-6" action="#">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account</label>
+                        <input   id="password" placeholder="XXXX XXXX XXXX XXXX" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+                    
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+<div id="purchase-provider-5" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+    <div  class="w-full max-w-lg  p-4 ">
+   <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal5">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Provider #5 - GHC/USD</h3>
+                <form class="space-y-6" action="#">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account</label>
+                        <input   id="password" placeholder="XXXX XXXX XXXX XXXX" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+                    
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+<div id="purchase-provider-6" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+    <div  class="w-full max-w-lg  p-4 ">
+   <div class="relative w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal6">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Provider #6 - GHC/USD</h3>
+                <form class="space-y-6" action="#">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="0.00" required>
+                    </div>
+                    <div>
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account</label>
+                        <input   id="password" placeholder="XXXX XXXX XXXX XXXX" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    </div>
+                    
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+
+
+  
+</body>
+<script>
+    // Get the canvas element
+    const canvas = document.getElementById('forexChart');
+  
+    // Generate random data for demonstration purposes
+    const labels = ['January', 'February', 'March', 'April', 'May'];
+    const data1 = [1.23, 1.25, 1.28, 1.30, 1.29];
+    const data2 = [0.85, 0.87, 0.88, 0.89, 0.91];
+  
+    // Create the chart
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Currency A',
+            data: data1,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            fill: false
+          },
+          {
+            label: 'Currency B',
+            data: data2,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    function showPopover() {
+      const popover = document.getElementById("popover-user-profile");
+      popover.classList.remove("invisible");
+      popover.classList.add("visible");
+      popover.style.opacity = "1";
+    }
+  
+    function hidePopover() {
+      const popover = document.getElementById("popover-user-profile");
+      popover.classList.remove("visible");
+      popover.classList.add("invisible");
+      popover.style.opacity = "0";
+    }
+  </script>
+    <script>
+    function toggleDropdown() {
+      var dropdownMenu = document.getElementById('language-dropdown-menu');
+      dropdownMenu.classList.toggle('hidden');
+    }
+    </script>
+    <script>
+    function toggleDropdown2() {
+      var dropdownMenu = document.getElementById('language-dropdown-menu2');
+      dropdownMenu.classList.toggle('hidden');
+    }
+    </script>
+     <script>
+        function toggleDropdown4() {
+          var dropdownMenu = document.getElementById('purchase-provider-1');
+          dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+     <script>
+        function toggleDropdown3() {
+          var dropdownMenu = document.getElementById('purchase-provider-2');
+          dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+     <script>
+        function toggleDropdown5() {
+          var dropdownMenu = document.getElementById('purchase-provider-3');
+          dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+     <script>
+        function toggleDropdown6() {
+          var dropdownMenu = document.getElementById('purchase-provider-4');
+          dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+     <script>
+        function toggleDropdown7() {
+          var dropdownMenu = document.getElementById('purchase-provider-5');
+          dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+     <script>
+        function toggleDropdown8() {
+          var dropdownMenu = document.getElementById('purchase-provider-6');
+          dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              // Get the close button element
+              const closeButton = document.querySelector('[data-modal-hide="authentication-modal1"]');
+              
+              // Add event listener to the close button
+              closeButton.addEventListener('click', function() {
+                const modalDiv = document.getElementById('purchase-provider-1');
+                modalDiv.classList.add('hidden');
+              });
+            });
+          </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Get the close button element
+          const closeButton = document.querySelector('[data-modal-hide="authentication-modal2"]');
+          
+          // Add event listener to the close button
+          closeButton.addEventListener('click', function() {
+            const modalDiv = document.getElementById('purchase-provider-2');
+            modalDiv.classList.add('hidden');
+          });
+        });
+      </script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              // Get the close button element
+              const closeButton = document.querySelector('[data-modal-hide="authentication-modal3"]');
+              
+              // Add event listener to the close button
+              closeButton.addEventListener('click', function() {
+                const modalDiv = document.getElementById('purchase-provider-3');
+                modalDiv.classList.add('hidden');
+              });
+            });
+          </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the close button element
+      const closeButton = document.querySelector('[data-modal-hide="authentication-modal4"]');
+      
+      // Add event listener to the close button
+      closeButton.addEventListener('click', function() {
+        const modalDiv = document.getElementById('purchase-provider-4');
+        modalDiv.classList.add('hidden');
+      });
+    });
+  </script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the close button element
+      const closeButton = document.querySelector('[data-modal-hide="authentication-modal5"]');
+      
+      // Add event listener to the close button
+      closeButton.addEventListener('click', function() {
+        const modalDiv = document.getElementById('purchase-provider-5');
+        modalDiv.classList.add('hidden');
+      });
+    });
+  </script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the close button element
+      const closeButton = document.querySelector('[data-modal-hide="authentication-modal6"]');
+      
+      // Add event listener to the close button
+      closeButton.addEventListener('click', function() {
+        const modalDiv = document.getElementById('purchase-provider-6');
+        modalDiv.classList.add('hidden');
+      });
+    });
+  </script>
+
+   
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the form element and order details elements
+      const form = document.querySelector('form');
+      const ordersDiv = document.getElementById('orders');
+      const newOrderDiv = document.getElementById('neworder');
+  
+      // Add event listener to the form submission
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+  
+        // Get the input values
+        const quantityInput = document.getElementById('quantity1');
+        const bankAccountInput = document.getElementById('bank1');
+  
+        // Retrieve the input values
+        const quantity = quantityInput.value.trim();
+        const bankAccount = bankAccountInput.value.trim();
+  
+        // Hide the orders div and show the neworder div
+        ordersDiv.style.display = 'none';
+        newOrderDiv.style.display = 'block';
+  
+        // Create a new order element
+        const newOrderElement = document.createElement('div');
+        newOrderElement.classList.add('w-full', 'p-8', 'border-2','justify-center', 'border-gray-300', 'rounded-2xl', 'bg-gray-50', 'dark:border-gray-600', 'dark:bg-gray-800');
+        newOrderElement.setAttribute('role', 'order');
+  
+        const flexContainer = document.createElement('div');
+        flexContainer.classList.add('flex', 'items-center');
+  
+        const leftContainer = document.createElement('div');
+        leftContainer.classList.add('flex-1');
+  
+        const orderDetailsHeading = document.createElement('h3');
+        orderDetailsHeading.classList.add('text-lg', 'font-medium', 'text-gray-800', 'dark:text-gray-300');
+        orderDetailsHeading.textContent = 'Order ID: #12345';
+  
+        const quantityElement = document.createElement('p');
+        quantityElement.classList.add('mt-2', 'text-sm', 'text-gray-800', 'dark:text-gray-300');
+        quantityElement.textContent = 'Quantity: ' + quantity;
+  
+        const bankAccountElement = document.createElement('p');
+        bankAccountElement.classList.add('mt-2', 'text-sm', 'text-gray-800', 'dark:text-gray-300');
+        bankAccountElement.textContent = 'Bank Account: ' + bankAccount;
+  
+        const dateElement = document.createElement('p');
+        dateElement.classList.add('mt-2', 'text-sm', 'text-gray-800', 'dark:text-gray-300');
+        dateElement.textContent = 'Date: May 29, 2023';
+  
+        const rightContainer = document.createElement('div');
+        rightContainer.classList.add('ml-4');
+  
+        const statusHeading = document.createElement('h3');
+        statusHeading.classList.add('text-lg', 'font-medium', 'text-gray-800', 'dark:text-gray-300');
+        statusHeading.textContent = 'Status';
+  
+        const statusElement = document.createElement('p');
+        statusElement.classList.add('mt-2', 'text-sm', 'text-gray-800', 'dark:text-gray-300');
+        statusElement.textContent = 'Pending';
+  
+        leftContainer.appendChild(orderDetailsHeading);
+        leftContainer.appendChild(quantityElement);
+        leftContainer.appendChild(bankAccountElement);
+        leftContainer.appendChild(dateElement);
+        rightContainer.appendChild(statusHeading);
+        rightContainer.appendChild(statusElement);
+        flexContainer.appendChild(leftContainer);
+        flexContainer.appendChild(rightContainer);
+        newOrderElement.appendChild(flexContainer);
+  
+        // Insert the newOrderElement at the top of newOrderDiv
+        if (newOrderDiv.firstChild) {
+          newOrderDiv.insertBefore(newOrderElement, newOrderDiv.firstChild);
+        } else {
+          newOrderDiv.appendChild(newOrderElement);
+        }
+  
+        // Reset the form
+        form.reset();
+      });
+    });
+  </script>
+  
+  
+      
+
